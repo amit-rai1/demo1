@@ -1,21 +1,149 @@
+<!-- filepath: /college-admission-portal/college-admission-portal/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Vercel Site</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <title>College Admission Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: #333;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .container {
+      background: rgba(255,255,255,0.95);
+      padding: 30px 20px;
+      max-width: 500px;
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+    img {
+      width: 150px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+    }
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #222;
+    }
+    .options label {
+      display: block;
+      background: #f1f1f1;
+      margin: 10px 0;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      transition: background 0.3s, transform 0.2s;
+      text-align: left;
+    }
+    label:hover {
+      background: #e0e4ee;
+      transform: scale(1.01);
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+      transform: scale(1.2);
+      vertical-align: middle;
+    }
+    .btn {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
+    .btn-link {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    .btn-link:hover {
+      background: #0056b3;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Vercel Site</h1>
-    </header>
-    <main>
-        <p>This is a sample web page deployed on Vercel.</p>
-    </main>
-    <footer>
-        <p>&copy; 2023 My Vercel Site</p>
-    </footer>
-    <script src="script.js"></script>
+  <div class="container">
+    <img src="https://i.postimg.cc/6pY6QNy8/logo.png" alt="College Logo">
+    <h2>College Admission Portal</h2>
+
+    <div class="options">
+      <label><input type="radio" name="student_type" value="new"> New Admission Registration</label>
+      <label><input type="radio" name="student_type" value="old"> Old Student Registration</label>
+    </div>
+
+    <button class="btn" onclick="showOptions()">Continue</button>
+
+    <div id="links" style="margin-top: 20px; display: none;"></div>
+
+    <div class="footer">Created by Rudra Shukla</div>
+  </div>
+
+  <script>
+    function showOptions() {
+      const studentType = document.querySelector('input[name="student_type"]:checked');
+      const linksDiv = document.getElementById("links");
+
+      if (!studentType) {
+        alert("Please select admission type.");
+        return;
+      }
+
+      let html = "";
+
+      if (studentType.value === "new") {
+        html += `<a class="btn-link" href="https://erp.mlkcollege.ac.in/" target="_blank">Login (New Admission)</a>`;
+        html += `<a class="btn-link" href="https://erp.mlkcollege.ac.in/register" target="_blank">Register (New Admission)</a>`;
+      } else {
+        html += `<a class="btn-link" href="https://erp.mlkcollege.ac.in/old-student-register" target="_blank">Register (Old Student)</a>`;
+        html += `<a class="btn-link" href="https://erp.mlkcollege.ac.in/" target="_blank">Login (Old Student)</a>`;
+      }
+
+      linksDiv.innerHTML = html;
+      linksDiv.style.display = "block";
+    }
+  </script>
 </body>
 </html>
